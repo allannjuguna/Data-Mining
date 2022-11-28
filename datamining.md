@@ -13,6 +13,7 @@ Data Mining Lab
 ## Stages of data mining
 * data acquisition
 * data cleaning, preparation, and transformation;
+	* Removing duplicates
 * data analysis, modeling, classification, and forecasting;
 * report
 
@@ -26,6 +27,7 @@ Data Mining Lab
 
 
 ### pandas
+* [Pandas tutorial](https://www.digitalocean.com/community/tutorials/python-pandas-module-tutorial)
 * Mostly used for opening and reading csv files
 * Example
 
@@ -36,12 +38,20 @@ df=pd.read_csv('breast cancer.csv',index_col="id")  # specifying the primary key
 df.head(3)  # reads the first 3 rows, if no argument is passed, it will print the first 5 rows
 df.tail(3)  # reads the last 3 rows, if no argument is passed, it will print the last 5 rows
 df.describe()  # Generate descriptive statistics like mean,standard_deviation,count,25%,75% etc
+df['Age'].describe() # Describing only on column
 df.shape  # gives the number of rows and columns (r,c) eg. (569,32)
 df.info()  # Print a concise summary of a DataFrame. This method prints information about a DataFrame including the index dtype and columns, non-null values and memory usage 
 
-df.duplicated().sum()
+df.duplicated().sum() # Showing the number of duplicated records
+df[df.duplicated()] # Best way of showing duplicated records
+df[df.duplicated(keep=False)] # Also shows duplicated records
+df[df.isin(df[df.duplicated()])].sort_values("sepal_width") # Showing the duplicated records
+
 df.isna().sum()
 df['diagnosis'].value_counts()  # counts unique records in the specified column
+
+df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
+
 
 ```
 
