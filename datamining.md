@@ -31,8 +31,8 @@ Data Mining Lab
 ### Pandas
 * [Pandas tutorial](https://www.digitalocean.com/community/tutorials/python-pandas-module-tutorial)
 * Mostly used for opening and reading csv files
-* Example
 
+* `Pandas basics`
 ```python
 import pandas as pd # Importing the module
 df=pd.read_csv('diabetes.csv')  # Here, df stands for data frame
@@ -46,7 +46,7 @@ df.info()  # Print a concise summary of a DataFrame. This method prints informat
 df['diagnosis'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records)
 ```
 
-* Checking for and removing duplicates
+* `Checking for and removing duplicates`
 ```python
 df.duplicated().sum() # Showing the number of duplicated records
 df[df.duplicated()] # Best way of showing duplicated records
@@ -55,18 +55,18 @@ df[df.isin(df[df.duplicated()])].sort_values("sepal_width") # Showing the duplic
 df.drop_duplicates(inplace=True) # Removing duplicates
 ```
 
-Sorting values
+* `Sorting values`
 ```python
 df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
 ```
 
-Checking of na values and removing them
+* `Checking of na values and removing them`
 ```python
 df.isna().sum() # Checking for na values
 df.dropna(inplace=True) # Deleting na values
 ```
 
-Filtering values
+* `Filtering values`
 ```python
 df[df['species']==False] # Filtering values by string
 df[df['species'] != "Iris-setosa"] # Filter values that do not match a certain criteria
@@ -74,7 +74,7 @@ df[df['Age']>90] # Filtering values by number
 df[df['species'].isin(['Iris-virginica','two'])] # Sorting by comparing to a list of values i.e similar to if item in ['one','two']
 ```
 
-Column Operations (Renaming and deleting)
+* `Column Operations (Renaming and deleting)`
 ```python
 # Renaming a column
 df.rename(columns = {'Old Name':'New Name'}, inplace=True)
