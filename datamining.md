@@ -26,7 +26,7 @@ Data Mining Lab
 * matplotlib
 
 
-### pandas
+### Pandas
 * [Pandas tutorial](https://www.digitalocean.com/community/tutorials/python-pandas-module-tutorial)
 * Mostly used for opening and reading csv files
 * Example
@@ -47,11 +47,15 @@ df[df.duplicated()] # Best way of showing duplicated records
 df[df.duplicated(keep=False)] # Also shows duplicated records
 df[df.isin(df[df.duplicated()])].sort_values("sepal_width") # Showing the duplicated records
 
-df.isna().sum()
-df['diagnosis'].value_counts()  # counts unique records in the specified column
-
+df['diagnosis'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records)
 df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
 
+df.isna().sum() # Checking for na values
+
+df[df['species']==False] # Filtering values by string
+df[df['species'] != "Iris-setosa"] # Filter values that do not match a certain criteria
+df[df['Age']>90] # Filtering values by number
+df[df['species'].isin(['Iris-virginica','two'])] # Sorting by comparing to a list of values i.e similar to if item in ['one','two']
 
 ```
 
@@ -76,6 +80,6 @@ df=pd.read_csv('diabetes.csv')
 ```
 
 ### References
-* https: #medium.com/analytics-vidhya/iris-data-prediction-using-decision-tree-algorithm-7948fb68201b
-* https: #www.kaggle.com/code/osamaeldemerdash/diabetes-prediction-with-decisiontreeclassifier
-* https: #www.kaggle.com/code/paramutchanthakan/cluster-analysis-using-hierarchical-and-kmean
+- https: #medium.com/analytics-vidhya/iris-data-prediction-using-decision-tree-algorithm-7948fb68201b
+- https: #www.kaggle.com/code/osamaeldemerdash/diabetes-prediction-with-decisiontreeclassifier
+- https: #www.kaggle.com/code/paramutchanthakan/cluster-analysis-using-hierarchical-and-kmean
