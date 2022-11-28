@@ -29,48 +29,49 @@ Data Mining Lab
 
 
 ### Pandas
-* Mostly used for opening and reading csv files
 * [Pandas tutorial](https://www.digitalocean.com/community/tutorials/python-pandas-module-tutorial)
 
 * `Pandas basics`
-```python
-import pandas as pd # Importing the module
-df=pd.read_csv('diabetes.csv')  # Here, df stands for data frame
-df=pd.read_csv('breast cancer.csv',index_col="id")  # specifying the primary key
-df.head(3)  # reads the first 3 rows, if no argument is passed, it will print the first 5 rows
-df.tail(3)  # reads the last 3 rows, if no argument is passed, it will print the last 5 rows
-df.describe()  # Generate descriptive statistics like mean,standard_deviation,count,25%,75% etc
-df['Age'].describe() # Describing only on column
-df.shape  # gives the number of rows and columns (r,c) eg. (569,32)
-df.info()  # Print a concise summary of a DataFrame. This method prints information about a DataFrame including the index dtype and columns, non-null values and memory usage 
-df.value_counts() # Counts unique records in the dataset i.e eliminates duplicates then counts
-df['gender'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records. It also gives count for each occurence e.g Male : 80 ,Female :90)
-```
+	* Mostly used for opening and reading csv files
+	```python
+	import pandas as pd # Importing the module
+	df=pd.read_csv('diabetes.csv')  # Here, df stands for data frame
+	df=pd.read_csv('breast cancer.csv',index_col="id")  # specifying the primary key
+	df.head(3)  # reads the first 3 rows, if no argument is passed, it will print the first 5 rows
+	df.tail(3)  # reads the last 3 rows, if no argument is passed, it will print the last 5 rows
+	df.describe()  # Generate descriptive statistics like mean,standard_deviation,count,25%,75% etc
+	df['Age'].describe() # Describing only on column
+	df.shape  # gives the number of rows and columns (r,c) eg. (569,32)
+	df.info()  # Print a concise summary of a DataFrame. This method prints information about a DataFrame including the index dtype and columns, non-null values and memory usage 
+	df.value_counts() # Counts unique records in the dataset i.e eliminates duplicates then counts
+	df['gender'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records. It also gives count for each occurence e.g Male : 80 ,Female :90)
+	```
 
 * `Checking for and removing duplicates`
-```python
-df.duplicated().sum() # Showing the number of duplicated records
-df[df.duplicated()] # Best way of showing duplicated records
-df[df.duplicated(keep=False)] # Also shows duplicated records
-df[df.isin(df[df.duplicated()])].sort_values("sepal_width") # Showing the duplicated records
-df.drop_duplicates(inplace=True) # Removing duplicates
-```
+	```python
+	df.duplicated().sum() # Showing the number of duplicated records
+	df[df.duplicated()] # Best way of showing duplicated records
+	df[df.duplicated(keep=False)] # Also shows duplicated records
+	df[df.isin(df[df.duplicated()])].sort_values("sepal_width") # Showing the duplicated records
+	df.drop_duplicates(inplace=True) # Removing duplicates
+	```
 
 * `Checking of na values and removing them`
-```python
-df.isna().sum() # Checking for na values
-df.dropna(inplace=True) # Deleting na values
+	```python
+	df.isna().sum() # Checking for na values
+	df.dropna(inplace=True) # Deleting na values
 
-# dropna() - Drop Null/NA Values from DataFrame
-```
+	# dropna() - Drop Null/NA Values from DataFrame
+	```
 
 * `Checking of null values and removing them`
-```python
-df.isnull().sum() # Counting null values
-df.dropna(inplace=True) # Deleting null values
+	```python
+	df.isnull().sum() # Counting null values
+	df.dropna(inplace=True) # Deleting null values
 
-# dropna() - Drop Null/NA Values from DataFrame
-```
+	# dropna() - Drop Null/NA Values from DataFrame
+	```
+	
 * `Sorting values`
 ```python
 df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
@@ -109,7 +110,7 @@ df[:10]
 
 
 * `Finding the correlation and plotting`
-There are three methods of finding correlation
+* There are three methods of finding correlation
 
 ```python
 corr=df.corr(method='kendall')
