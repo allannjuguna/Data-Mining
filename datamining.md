@@ -14,6 +14,8 @@ Data Mining Lab
 * data acquisition
 * data cleaning, preparation, and transformation;
 	* Removing duplicates
+	* Checking for na values 
+	* Drop unnecessary columns
 * data analysis, modeling, classification, and forecasting;
 * report
 
@@ -41,23 +43,47 @@ df.describe()  # Generate descriptive statistics like mean,standard_deviation,co
 df['Age'].describe() # Describing only on column
 df.shape  # gives the number of rows and columns (r,c) eg. (569,32)
 df.info()  # Print a concise summary of a DataFrame. This method prints information about a DataFrame including the index dtype and columns, non-null values and memory usage 
+df['diagnosis'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records)
+```
 
+* Checking for and removing duplicates
+```python
 df.duplicated().sum() # Showing the number of duplicated records
 df[df.duplicated()] # Best way of showing duplicated records
 df[df.duplicated(keep=False)] # Also shows duplicated records
 df[df.isin(df[df.duplicated()])].sort_values("sepal_width") # Showing the duplicated records
+df.drop_duplicates(inplace=True) # Removing duplicates
+```
 
-df['diagnosis'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records)
+Sorting values
+```python
 df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
+```
 
+Checking of na values and removing them
+```python
 df.isna().sum() # Checking for na values
+df.dropna(inplace=True) # Deleting na values
+```
 
+Filtering values
+```python
 df[df['species']==False] # Filtering values by string
 df[df['species'] != "Iris-setosa"] # Filter values that do not match a certain criteria
 df[df['Age']>90] # Filtering values by number
 df[df['species'].isin(['Iris-virginica','two'])] # Sorting by comparing to a list of values i.e similar to if item in ['one','two']
-
 ```
+
+Column Operations (Renaming and deleting)
+```python
+# Renaming a column
+df.rename(columns = {'Old Name':'New Name'}, inplace=True)
+
+# Deleting a column
+del df['Matches played']
+df.pop('Matches played')
+```
+
 
 
 ### sklearn
