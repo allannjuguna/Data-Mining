@@ -60,7 +60,6 @@ Data Mining Lab
 	```python
 	df.isna().sum() # Checking for na values
 	df.dropna(inplace=True) # Deleting na values
-
 	# dropna() - Drop Null/NA Values from DataFrame
 	```
 
@@ -68,57 +67,61 @@ Data Mining Lab
 	```python
 	df.isnull().sum() # Counting null values
 	df.dropna(inplace=True) # Deleting null values
-
 	# dropna() - Drop Null/NA Values from DataFrame
 	```
-	
+
 * `Sorting values`
-```python
-df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
-```
+	```python
+	df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
+	```
 
 * `Filtering values`
-```python
-df[df['species']==False] # Filtering values by string
-df[df['species'] != "Iris-setosa"] # Filter values that do not match a certain criteria
-df[df['Age']>90] # Filtering values by number
-df[df['species'].isin(['Iris-virginica','two'])] # Sorting by comparing to a list of values i.e similar to if item in ['one','two']
-```
+	```python
+	df[df['species']==False] # Filtering values by string
+	df[df['species'] != "Iris-setosa"] # Filter values that do not match a certain criteria
+	df[df['Age']>90] # Filtering values by number
+	df[df['species'].isin(['Iris-virginica','two'])] # Sorting by comparing to a list of values i.e similar to if item in ['one','two']
+	```
 
-* `Column Operations (Renaming and deleting)`
-```python
-# Renaming a column
-df.rename(columns = {'Old Name':'New Name'}, inplace=True)
+* `Column Operations (Viewing, Renaming and deleting)`
+	```python
+	# Specifying the columns to view
+	columns = ['Pregnancies', 'Glucose', 'Insulin']
+	df[columns] # Displays records with only the specified columns
 
-# Adding a new column to the data
-df['Accepted']="True"
-df.head() # To confirm the changes
+	# Renaming a column
+	df.rename(columns = {'Old Name':'New Name'}, inplace=True)
 
-# Deleting a column
-del df['Accepted']
-df.pop('Accepted')
+	# Adding a new column to the data
+	df['Accepted']="True"
+	df.head() # To confirm the changes
 
-# Merging 2 columns to create a new one
-df['Total']=(df['Income']+df['Expenses'])
-```
+	# Deleting a column
+	df=df.drop(["Outcome"],axis=1)
+	del df['Accepted']
+	df.pop('Accepted')
+
+	# Merging 2 columns to create a new one
+	df['Total']=(df['Income']+df['Expenses'])
+	```
 
 * `Viewing data`
-```python
-# Printing the first 10 rows of the data frame for visualization
-df[:10]
-```
+	```python
+	# Printing the first 10 rows of the data frame for visualization
+	df[:10]
+	```
 
 
 * `Finding the correlation and plotting`
-* There are three methods of finding correlation
+	* There are three methods of finding correlation
 
-```python
-corr=df.corr(method='kendall')
-corr=df.corr(method='pearson')
-corr=df.corr(method='spearman')
+	```python
+	corr=df.corr(method='kendall')
+	corr=df.corr(method='pearson')
+	corr=df.corr(method='spearman')
 
-corr=df.corr() # Use corr() function to find the correlation among the columns in the Dataframe using the ‘Pearson’ method. 
-```
+	corr=df.corr() # Use corr() function to find the correlation among the columns in the Dataframe using the ‘Pearson’ method. 
+	```
 
 
 
@@ -128,26 +131,50 @@ corr=df.corr() # Use corr() function to find the correlation among the columns i
 * [Matplotlib Tutorial](https://www.geeksforgeeks.org/matplotlib-tutorial/)
 
 * `Basics`
-```python
-import matplotlib.pyplot as plt
-plt.figure(figsize=(10,8)) # Creating a new figure with width = 5 inches and height = 4 inches
-```
+	```python
+	import matplotlib.pyplot as plt
+	plt.figure(figsize=(10,8)) # Creating a new figure with width = 5 inches and height = 4 inches
+	```
 
-* `Plotting a heatmap using seaborn`
-* We can use the correlation obtain in the previous stage
-```python
-import seaborn as sns
-corr=df.corr()
-sns.heatmap(corr,annot=True)
-```
+* `Plotting a correlation heatmap using seaborn`
+	* We can use the correlation obtain in the previous stage
+	```python
+	import seaborn as sns
+	corr=df.corr()
+	sns.heatmap(corr,annot=True) # If annot is set to true, each box we have a numerical value representing the correlation
+	```
+
+### Seaborn
+* Mosty used for plotting values
+
+* `Displot`
+	* Plotting a graph of count(y axis) against insulin(float - x axis) 
+	* Use *df["Insulin"].value_counts()* to see what is happening in the background 
+	```python
+	import seaborn as sns
+	sns.displot(df["Insulin"],color='g')  # g represents green, r(red) or b(blue) can also be used
+	```
+
+* `Scatterplot`
+	* First we have give it the data frame i.e *data=df* and the x and y axis
+	```
+	sn.scatterplot(data=df, x='Age', y='Insulin')
+	```
+
+* `lineplot`
+	* We can also use a lineplot as shown
+	```
+	sn.lineplot(data=df, x='Age', y='Insulin')
+	```
+
 
 ### sklearn
-* for generating decision trees
-```
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test
-```
+* `for generating decision trees`
+	```
+	from sklearn.tree import DecisionTreeClassifier
+	from sklearn.metrics import accuracy_score
+	from sklearn.model_selection import train_test
+	```
 
 
 
