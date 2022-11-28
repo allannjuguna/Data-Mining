@@ -2,20 +2,24 @@ Data Mining Lab
 ===========================
 
 # Catalog
-<li><a href="#markdown-guide">Markdown Guide</a></li>
+* [common-libraries](#common-libraries)
+	* [pandas](#pandas)
+* [](#)
+* [](#)
+* [](#)
+* [](#)
 
 
-# Data mining libraries
-* pandas`
+## Common Libraries
+* pandas
 * sklearn - for decision trees
 * numpy
 * seaborn
 * matplotlib
 
 
-## LAB 2
 ### pandas
-* for opening and reading csv files
+* Mostly used for opening and reading csv files
 * Example
 ```
 import pandas as pd
