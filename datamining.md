@@ -2,11 +2,11 @@ Data Mining Lab
 ===========================
 
 # Catalog
-* [common-libraries](#common-libraries)
-	* [pandas](#pandas)
-* [](#)
-* [](#)
-* [](#)
+* [Common Libraries](#common-libraries)
+	* [Pandas](#pandas)
+	* [Matplotlib](#matplotlib)
+	* [Seaborn](#seaborn)
+	* [Sklearn](#sklearn)
 * [references](#references)
 
 
@@ -29,8 +29,8 @@ Data Mining Lab
 
 
 ### Pandas
-* [Pandas tutorial](https://www.digitalocean.com/community/tutorials/python-pandas-module-tutorial)
 * Mostly used for opening and reading csv files
+* [Pandas tutorial](https://www.digitalocean.com/community/tutorials/python-pandas-module-tutorial)
 
 * `Pandas basics`
 ```python
@@ -43,7 +43,8 @@ df.describe()  # Generate descriptive statistics like mean,standard_deviation,co
 df['Age'].describe() # Describing only on column
 df.shape  # gives the number of rows and columns (r,c) eg. (569,32)
 df.info()  # Print a concise summary of a DataFrame. This method prints information about a DataFrame including the index dtype and columns, non-null values and memory usage 
-df['diagnosis'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records)
+df.value_counts() # Counts unique records in the dataset i.e eliminates duplicates then counts
+df['gender'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records. It also gives count for each occurence e.g Male : 80 ,Female :90)
 ```
 
 * `Checking for and removing duplicates`
@@ -55,15 +56,24 @@ df[df.isin(df[df.duplicated()])].sort_values("sepal_width") # Showing the duplic
 df.drop_duplicates(inplace=True) # Removing duplicates
 ```
 
-* `Sorting values`
-```python
-df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
-```
-
 * `Checking of na values and removing them`
 ```python
 df.isna().sum() # Checking for na values
 df.dropna(inplace=True) # Deleting na values
+
+# dropna() - Drop Null/NA Values from DataFrame
+```
+
+* `Checking of null values and removing them`
+```python
+df.isnull().sum() # Counting null values
+df.dropna(inplace=True) # Deleting null values
+
+# dropna() - Drop Null/NA Values from DataFrame
+```
+* `Sorting values`
+```python
+df.sort_values('Literacy %', ascending=False) # Sorting a single column in ascending order
 ```
 
 * `Filtering values`
@@ -79,12 +89,56 @@ df[df['species'].isin(['Iris-virginica','two'])] # Sorting by comparing to a lis
 # Renaming a column
 df.rename(columns = {'Old Name':'New Name'}, inplace=True)
 
+# Adding a new column to the data
+df['Accepted']="True"
+df.head() # To confirm the changes
+
 # Deleting a column
-del df['Matches played']
-df.pop('Matches played')
+del df['Accepted']
+df.pop('Accepted')
+
+# Merging 2 columns to create a new one
+df['Total']=(df['Income']+df['Expenses'])
+```
+
+* `Viewing data`
+```python
+# Printing the first 10 rows of the data frame for visualization
+df[:10]
 ```
 
 
+* `Finding the correlation and plotting`
+There are three methods of finding correlation
+
+```python
+corr=df.corr(method='kendall')
+corr=df.corr(method='pearson')
+corr=df.corr(method='spearman')
+
+corr=df.corr() # Use corr() function to find the correlation among the columns in the Dataframe using the ‘Pearson’ method. 
+```
+
+
+
+### Matplotlib
+* Mostly used for plotting
+* [Matplotlib Tutorial](https://matplotlib.org/stable/tutorials/introductory/pyplot.html)
+* [Matplotlib Tutorial](https://www.geeksforgeeks.org/matplotlib-tutorial/)
+
+* `Basics`
+```python
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10,8)) # Creating a new figure with width = 5 inches and height = 4 inches
+```
+
+* `Plotting a heatmap using seaborn`
+* We can use the correlation obtain in the previous stage
+```python
+import seaborn as sns
+corr=df.corr()
+sns.heatmap(corr,annot=True)
+```
 
 ### sklearn
 * for generating decision trees
@@ -106,6 +160,6 @@ df=pd.read_csv('diabetes.csv')
 ```
 
 ### References
-- https: #medium.com/analytics-vidhya/iris-data-prediction-using-decision-tree-algorithm-7948fb68201b
-- https: #www.kaggle.com/code/osamaeldemerdash/diabetes-prediction-with-decisiontreeclassifier
-- https: #www.kaggle.com/code/paramutchanthakan/cluster-analysis-using-hierarchical-and-kmean
+- https://medium.com/analytics-vidhya/iris-data-prediction-using-decision-tree-algorithm-7948fb68201b
+- https://www.kaggle.com/code/osamaeldemerdash/diabetes-prediction-with-decisiontreeclassifier
+- https://www.kaggle.com/code/paramutchanthakan/cluster-analysis-using-hierarchical-and-kmean
