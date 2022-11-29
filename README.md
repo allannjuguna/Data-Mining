@@ -133,6 +133,7 @@ Data Mining Lab
 * `Basics`
 	```python
 	import matplotlib.pyplot as plt
+	plt.title('Species Count') # Specifying the name of the plot
 	plt.figure(figsize=(10,8)) # Creating a new figure with width = 5 inches and height = 4 inches
 	```
 
@@ -152,29 +153,60 @@ Data Mining Lab
 	* Use *df["Insulin"].value_counts()* to see what is happening in the background 
 	```python
 	import seaborn as sns
+	import matplotlib.pyplot as plt
+	plt.title('Insulin displot') # Specifying the name of the plot
 	sns.displot(df["Insulin"],color='g')  # g represents green, r(red) or b(blue) can also be used
 	```
 
 * `Scatterplot`
 	* First we have to give it the data frame i.e *data=df* and the x and y axis
-	```
+	```python
 	sn.scatterplot(data=df, x='Age', y='Insulin')
 	```
 
 * `lineplot`
 	* We can also use a lineplot as shown
-	```
+	```python
 	sn.lineplot(data=df, x='Age', y='Insulin')
 	```
 
 
 ### sklearn
-* `for generating decision trees`
-	```
+* Mostly used for generating decision trees
+* `Building a Classification Model`
+	* `Importing required modules`
+	```python
+	from sklearn import tree
 	from sklearn.tree import DecisionTreeClassifier
-	from sklearn.metrics import accuracy_score
-	from sklearn.model_selection import train_test
+	from sklearn.model_selection import train_test_split,cross_val_score
+	import graphviz
 	```
+
+	* `Setting columns to use`
+	```python
+	X=df[['sepal_length','sepal_width','petal_length','petal_width']]
+	Y=df['species']
+	# We are using the characteristics in X to determine Y
+	```
+
+	* `Configuring train data and test data`
+	```python
+	Xtrain,Xtest,Ytrain,Ytest=train_test_split(X,Y, test_size=0.30,random_state=42)
+	# Splitting data into validation train and validation test
+	Xt,Xcv,Yt,Ycv= train_test_split(Xtrain,Ytrain,test_size=0.10,random_state=42)
+	```
+	
+	* `Create a decision tree classifier and train it with training data set`
+	```python
+	Iris_clf=DecisionTreeClassifier(criterion='gini',min_samples_split=2)
+	Iris_clf.fit(Xt,Yt)
+	```
+
+	* `Visualize the decision tree`
+	```python
+	tree.plot_tree(Iris_clf)
+	```
+
 
 
 
