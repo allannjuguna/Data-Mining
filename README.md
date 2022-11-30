@@ -223,3 +223,4 @@ df=pd.read_csv('diabetes.csv')
 - https://medium.com/analytics-vidhya/iris-data-prediction-using-decision-tree-algorithm-7948fb68201b
 - https://www.kaggle.com/code/osamaeldemerdash/diabetes-prediction-with-decisiontreeclassifier
 - https://www.kaggle.com/code/paramutchanthakan/cluster-analysis-using-hierarchical-and-kmean
+- https://www.kaggle.com/code/paramutchanthakan/cluster-analysis-using-hierarchical-and-kmean
