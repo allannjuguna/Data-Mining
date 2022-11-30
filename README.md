@@ -44,7 +44,7 @@ Data Mining Lab
 	df.shape  # gives the number of rows and columns (r,c) eg. (569,32)
 	df.info()  # Print a concise summary of a DataFrame. This method prints information about a DataFrame including the index dtype and columns, non-null values and memory usage 
 	df.value_counts() # Counts unique records in the dataset i.e eliminates duplicates then counts
-	df['gender'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records. It also gives count for each occurence e.g Male : 80 ,Female :90)
+	df['gender'].value_counts()  # counts unique records in the specified column (removes duplicates then counts the records. It also gives count for each occurence e.g Male : 80 ,Female :90) - returns a dict
 	```
 
 * `Checking for and removing duplicates`
@@ -108,7 +108,16 @@ Data Mining Lab
 * `Viewing data`
 	```python
 	# Printing the first 10 rows of the data frame for visualization
-	df[:10]
+	df[:10]   # This is similar to df.head(10)
+
+	# Printing all the rows of the second last column
+	df[:,-2]
+
+	# Printing the third row value (with an index of 2 - index starts from 0) in the second last column
+	df.iloc[2,-2]
+
+	# Printing the second last value of the second last column
+	df.iloc[-1,-1]
 	```
 
 
@@ -163,11 +172,29 @@ Data Mining Lab
 	```python
 	sn.scatterplot(data=df, x='Age', y='Insulin')
 	```
+	* Method 2
+	```
+	plt.figure(figsize=[20,8])
+	plt.scatter(df_cluster.iloc[:,1] , df_cluster.iloc[:,0] , s=100 , color = 'blue')
+	plt.title('The scatterplot of Customers Income and number of buying products')
+	plt.xlabel('TotalBuyProduct')
+	plt.ylabel('Income')
+	plt.show()
+	```
 
 * `lineplot`
 	* We can also use a lineplot as shown
 	```python
 	sn.lineplot(data=df, x='Age', y='Insulin')
+	```
+
+* `Barplot`
+	```
+	field='Outcome'
+	keys=df[field].value_counts() # Returns a dict with key,value pair e.g Male:55(number of males) , Female:77 (number of females)
+	counts=list(keys.keys())
+	items=list(keys.values)
+	sn.barplot(x=counts,y=items)
 	```
 
 
