@@ -1,4 +1,4 @@
-Data Mining Lab
+Personal Notes on Machine Learning and Data Mining
 ===========================
 
 # Catalog
@@ -18,6 +18,7 @@ Data Mining Lab
 	* Drop unnecessary columns
 * data analysis, modeling, classification, and forecasting;
 * report
+* Visualization
 
 
 ## Common Libraries
@@ -192,7 +193,7 @@ Data Mining Lab
 	```
 	field='Outcome'
 	keys=df[field].value_counts() # Returns a dict with key,value pair e.g Male:55(number of males) , Female:77 (number of females)
-	counts=list(keys.keys())
+	counts=list(keys.keys()) #
 	items=list(keys.values)
 	sn.barplot(x=counts,y=items)
 	```
